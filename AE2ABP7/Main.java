@@ -2,9 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package cl.unab.android.ae2abp7.ae2abp7;
-
-
 
 /**
  *
