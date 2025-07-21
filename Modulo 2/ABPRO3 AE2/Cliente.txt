@@ -1,0 +1,37 @@
+package cl.lte;
+
+/**
+ *
+ * Autor: Alejandra Flaño
+ * Fecha:16/06/2025
+ *
+ * */
+
+public class Cliente {
+    private int rut;
+    private String nombres, apellidos, fono, afp, direccion, comuna;
+    private int salud;  // 1 = Fonasa, 2 = Isapre
+
+    public Cliente(int rut, String nombres, String apellidos, String fono,
+                   String afp, String direccion, String comuna, int salud) {
+        this.rut = rut;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.fono = fono;
+        this.afp = afp;
+        this.direccion = direccion;
+        this.comuna = comuna;
+        this.salud = salud;
+    }
+
+    public void mostrarCliente() {
+        System.out.println("RUT       : " + rut);
+        System.out.println("Nombre    : " + nombres + " " + apellidos);
+        System.out.println("Teléfono  : " + fono);
+        System.out.println("AFP       : " + afp);
+        System.out.println("Salud     : " + (salud == 1 ? "Fonasa" : "Isapre"));
+        System.out.println("Dirección : " + direccion);
+        System.out.println("Comuna    : " + comuna);
+
+    }
+}

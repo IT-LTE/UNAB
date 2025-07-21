@@ -1,0 +1,66 @@
+package cl.lte;
+import java.util.Scanner;
+
+public class ClienteInput {
+    private Scanner sc;
+
+    public ClienteInput(Scanner sc) {
+        this.sc = sc;
+    }
+
+    public Cliente leerCliente() {
+        int rut = leerRut("Ingrese RUT (0 a 99999999): ", 0, 99999999);
+        String nombres = leerTexto("Ingrese nombres:");
+        String apellidos = leerTexto("Ingrese apellidos:");
+        String fono = leerTexto("Ingrese teléfono:");
+        String afp = leerTexto("Ingrese AFP:");
+        int salud = leerSistemaSalud();
+        String direccion = leerTexto("Ingrese dirección (máx 50):", 50);
+        String comuna = leerTexto("Ingrese comuna:");
+
+        return new Cliente(rut, nombres, apellidos, fono, afp, direccion, comuna, salud);
+    }
+
+    private int leerRut(String mensaje, int min, int max) {
+        int valor;
+        while (true) {
+            System.out.print(mensaje);
+            String input = sc.nextLine().trim();
+            if (input.matches("\\d+")) {
+                valor = Integer.parseInt(input);
+                if (valor >= min && valor <= max) break;
+            }
+            System.out.println("Este Rut no es valido. Ingrese nuevamente.");
+        }
+        return valor;
+    }
+
+    private String leerTexto(String mensaje) {
+        return leerTexto(mensaje, Integer.MAX_VALUE);
+    }
+
+    private String leerTexto(String mensaje, int maxLength) {
+        String texto;
+        do {
+            System.out.print(mensaje);
+            texto = sc.nextLine().trim().toUpperCase();
+            if (!texto.isEmpty() && texto.length() <= maxLength) break;
+            System.out.println("Texto inválido. Intente nuevamente.");
+        } while (true);
+        return texto;
+    }
+
+    private int leerSistemaSalud() {
+        int salud;
+        do {
+            System.out.print("Ingrese sistema de salud (1: Fonasa, 2: Isapre): ");
+            String input = sc.nextLine().trim();
+            if (input.equals("1") || input.equals("2")) {
+                salud = Integer.parseInt(input);
+                break;
+            }
+            System.out.println("Valor inválido. Debe ingresar 1 (Fonasa) o 2 (Isapre).");
+        } while (true);
+        return salud;
+    }
+}
