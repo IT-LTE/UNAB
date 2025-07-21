@@ -1,0 +1,45 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package cl.unab.android.ae3abp2.ae3abp2;
+
+//iumportacion de bbliotecas
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alejandra Flaño
+ * Fecha 25/06/2025
+ * ejercicio que pide maximo 3 veces el ingreso de contraseña, en casdo de error
+ * se sale del sistema en el 3 intento 
+ * en caso que estar correcto enviar mensaje La clave ingresada es correcta
+ */
+public class AE3ABP2 {
+
+    public static void main(String[] args) {
+        
+        final String  pswd="123Abc";
+        String dato;
+        int intentos=0;
+        
+        Scanner sc= new Scanner (System.in);
+       
+        do {
+             System.out.println("Ingrese la contraseña : ");
+            dato = sc.nextLine();
+            if (pswd.equals(dato)) {
+                intentos =4;
+                System.out.println("La clave ingresada es correcta");
+            }
+            else {
+                intentos += 1;
+            }
+            
+        } while (intentos <3);
+        
+        if (intentos == 3){
+            System.out.println("Lamento, se bloque por tener 3 intentos erroneos");
+        }
+    }
+}

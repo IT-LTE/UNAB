@@ -1,0 +1,57 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package cl.unab.android.ae3abp3.ae3abp3;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alejandra Flaño
+ * Fecha 25/06/2025
+ * 
+ * 
+ */
+public class AE3ABP3 {
+
+    public static void main(String[] args) {
+        
+        //declaracion para poder leer el texto a ingresar
+        Scanner sc = new Scanner(System.in);
+        
+        //declaracion de variables
+        String texto;
+        int numVocales = 0, numConsonantes=0, largo = 0;
+        
+        
+        do{
+            System.out.println("Ingrese el texto que desea evaluar : ");
+            texto=sc.nextLine();
+            //vam,os a eliminar los blancos no significativos
+            texto = texto.trim();
+            //largo real del texto, incluyendo blancos entre palabras y caracteres especiales
+            largo = texto.length();
+        } while(largo==0);
+        
+        //convertir a mayusculas
+        texto = texto.toUpperCase();
+        
+        //recorrer el texto y revisar caracter a caracter
+        for (int i=0 ; i <=(largo-1); i++){
+            char caracter=texto.charAt(i);            
+            System.out.println("El caracter es " + caracter);
+            //validar si el caracter es una letra
+            if (Character.isLetter(caracter)){
+                //validar que el caracter es una vocal
+                if ((caracter =='A') || (caracter =='E') || (caracter == 'I') || (caracter == 'O') || (caracter == 'U')){
+                    numVocales +=1;
+                }
+                else{
+                    numConsonantes += 1;
+                }
+            }
+        }
+        System.out.println("Este texto tiene  " + numVocales + " Vocales y " +numConsonantes + " Consonantes");
+    }
+}
