@@ -1,0 +1,20 @@
+package cl.lte;
+
+public class Conversion {
+
+    public double convertirACelsius(Temperatura temperatura) {
+        String unidad = temperatura.getUnidad();
+
+        switch (unidad) {
+            case "CELSIUS":
+                return temperatura.getValor();
+            case "FAHRENHEIT":
+                return (temperatura.getValor() - 32) * 5 / 9;
+            case "KELVIN":
+                return temperatura.getValor() - 273.15;
+            default:
+                System.out.println("Unidad no reconocida. Se asume Celsius.");
+                return temperatura.getValor();
+        }
+    }
+}

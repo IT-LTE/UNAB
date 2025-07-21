@@ -1,0 +1,8 @@
+package cl.lte.gestionar;
+
+public interface Gestionar<T> {
+    void crear(T contexto);
+    void listar();
+    void buscar(String codigo);
+    void eliminar(String codigo);
+}

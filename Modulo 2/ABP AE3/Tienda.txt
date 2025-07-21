@@ -1,0 +1,26 @@
+package cl.lte;
+
+public class Tienda {
+    private String nombre;
+    private String direccion;
+    private String codigo;
+
+    public Tienda(String nombre, String direccion, String codigo) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.codigo = codigo;
+    }
+
+    public String getNombre() { return nombre; }
+    public String getDireccion() { return direccion; }
+    public String getCodigo() { return codigo; }
+
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
+    public void setCodigo(String codigo) { this.codigo = codigo; }
+
+    @Override
+    public String toString() {
+        return "Tienda: " + nombre + ", Dirección: " + direccion + ", Código: " + codigo;
+    }
+}

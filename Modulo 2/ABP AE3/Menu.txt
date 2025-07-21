@@ -1,0 +1,107 @@
+package cl.lte;
+
+import cl.lte.gestionar.GestionarProducto;
+import cl.lte.gestionar.GestionarTienda;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Menu {
+    private final Scanner sc = new Scanner(System.in);
+
+    public void iniciar(Inventario inventario, List<Tienda> tiendas) {
+        GestionarProducto gp = new GestionarProducto(inventario);
+        GestionarTienda gt = new GestionarTienda(tiendas);
+
+        int op;
+        do {
+            System.out.println("\n--- MENÚ ---");
+            System.out.println("1. Gestionar Productos");
+            System.out.println("2. Gestionar Tiendas");
+            System.out.println("0. Salir");
+            System.out.print("Opción: ");
+            op = sc.nextInt();
+            sc.nextLine();
+
+            switch (op) {
+                case 1 :
+                    menuProducto(gp);
+                case 2:
+                    menuTienda(gt);
+                case 0:
+                    System.out.println("Gracias por ocupar nuestro sistema.");
+                default:
+                    System.out.println("Opción inválida.");
+            }
+        } while (op != 0);
+    }
+
+    private void menuProducto(GestionarProducto gp) {
+        int op;
+        do {
+            System.out.println("\n--- PRODUCTOS ---");
+            System.out.println("1. Agregar nuevo");
+            System.out.println("2. Listar existentes");
+            System.out.println("3. Buscar");
+            System.out.println("4. Eliminar");
+            System.out.println("0. Volver a menu principal");
+            System.out.print("Opcion: ");
+            op = sc.nextInt();
+            sc.nextLine();
+
+            switch (op) {
+                case 1 :
+                    gp.crear(null);
+                case 2 :
+                    gp.listar();
+                case 3 :{
+                    System.out.print("Codigo: ");
+                    gp.buscar(sc.nextLine());
+                }
+                case 4 :{
+                    System.out.print("Codigo: ");
+                    gp.eliminar(sc.nextLine());
+                }
+                case 0 :
+                    System.out.println("Volviendo...");
+                default :
+                    System.out.println("Esta opcion no existe, vuelva a ingresar.");
+            }
+        } while (op != 0);
+    }
+
+    private void menuTienda(GestionarTienda gt) {
+        int op;
+        do {
+            System.out.println("\n--- TIENDAS ---");
+            System.out.println("1. Agregar nueva");
+            System.out.println("2. Listar existentes");
+            System.out.println("3. Buscar ");
+            System.out.println("4. Eliminar ");
+            System.out.println("0. Volver a menu principal");
+            System.out.print("Opcion: ");
+            op = sc.nextInt();
+            sc.nextLine();
+
+            switch (op) {
+                case 1 :
+                    gt.crear(null);
+                case 2 :
+                    gt.listar();
+                case 3 :{
+                    System.out.print("Codigo: ");
+                    gt.buscar(sc.nextLine());
+                }
+                case 4 :{
+                    System.out.print("Codigo: ");
+                    gt.eliminar(sc.nextLine());
+                }
+                case 0 :
+                    System.out.println("Volviendo...");
+                default :
+                    System.out.println("Esta opcion no existe, vuelva a ingresar.");
+            }
+        } while (op != 0);
+    }
+}

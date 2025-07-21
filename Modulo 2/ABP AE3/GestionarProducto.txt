@@ -1,0 +1,51 @@
+package cl.lte.gestionar;
+
+import cl.lte.Producto;
+import cl.lte.Inventario;
+
+import java.util.Scanner;
+
+public class GestionarProducto implements Gestionar<Inventario> {
+    private Scanner sc = new Scanner(System.in);
+    private Inventario inventario;
+
+    public GestionarProducto(Inventario inventario) {
+        this.inventario = inventario;
+    }
+
+    @Override
+    public void crear(Inventario contexto) {
+        System.out.println("Nombre:");
+        String nombre = sc.nextLine();
+        System.out.println("Código:");
+        String codigo = sc.nextLine();
+        System.out.println("Precio:");
+        double precio = sc.nextDouble();
+        System.out.println("Cantidad:");
+        int cantidad = sc.nextInt();
+        sc.nextLine();
+
+        inventario.agregarProducto(new Producto(nombre, codigo, precio, cantidad));
+        System.out.println("Producto agregado.");
+    }
+
+    @Override
+    public void listar() {
+        if (inventario.getProductos().isEmpty()) {
+            System.out.println("Sin productos.");
+        } else {
+            inventario.getProductos().forEach(System.out::println);
+        }
+    }
+
+    @Override
+    public void buscar(String codigo) {
+        Producto p = inventario.buscarPorCodigo(codigo);
+        System.out.println(p != null ? p : "No encontrado.");
+    }
+
+    @Override
+    public void eliminar(String codigo) {
+        System.out.println(inventario.eliminarProducto(codigo) ? "Eliminado." : "No encontrado.");
+    }
+}

@@ -1,0 +1,65 @@
+package cl.lte.gestionar;
+
+import cl.lte.Tienda;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class GestionarTienda implements Gestionar<List<Tienda>> {
+    private Scanner sc = new Scanner(System.in);
+    private List<Tienda> tiendas;
+
+    public GestionarTienda(List<Tienda> tiendas) {
+        this.tiendas = tiendas;
+    }
+
+    @Override
+    public void crear(List<Tienda> contexto) {
+        System.out.println("Nombre:");
+        String nombre = sc.nextLine();
+        System.out.println("Dirección:");
+        String direccion = sc.nextLine();
+        System.out.println("Código:");
+        String codigo = sc.nextLine();
+
+        tiendas.add(new Tienda(nombre, direccion, codigo));
+        System.out.println("Tienda agregada.");
+    }
+
+    @Override
+    public void listar() {
+        if (tiendas.isEmpty()) {
+            System.out.println("Sin tiendas.");
+        } else {
+            tiendas.forEach(System.out::println);
+        }
+    }
+
+    @Override
+    public void buscar(String codigo) {
+        for (Tienda t : tiendas) {
+            if (t.getCodigo().equalsIgnoreCase(codigo)) {
+                System.out.println(t);
+                return;
+            }
+        }
+        System.out.println("No encontrada.");
+    }
+
+    @Override
+    public void eliminar(String codigo) {
+        Tienda encontrada = null;
+        for (Tienda t : tiendas) {
+            if (t.getCodigo().equalsIgnoreCase(codigo)) {
+                encontrada = t;
+                break;
+            }
+        }
+        if (encontrada != null) {
+            tiendas.remove(encontrada);
+            System.out.println("Tienda eliminada.");
+        } else {
+            System.out.println("No encontrada.");
+        }
+    }
+}

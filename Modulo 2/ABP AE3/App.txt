@@ -1,0 +1,16 @@
+package cl.lte;
+
+/**
+ * Hello world!
+ */
+import java.util.ArrayList;
+import java.util.List;
+
+public class App {
+    public static void main(String[] args) {
+        Inventario inventario = new Inventario();
+        List<Tienda> tiendas = new ArrayList<>();
+        Menu menu = new Menu();
+        menu.iniciar(inventario, tiendas);
+    }
+}

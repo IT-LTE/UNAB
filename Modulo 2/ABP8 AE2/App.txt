@@ -1,0 +1,30 @@
+package cl.lte;
+
+import java.util.Scanner;
+
+/**
+ * Autor : Alejandra Flaño
+ * Fecha: 16/07/2025
+ */
+
+public class App {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=== Conversor de Temperatura a Celsius ===");
+        System.out.println(" ");
+        System.out.print("Ingrese la temperatura: ");
+        double valor = sc.nextDouble();
+        sc.nextLine(); // limpiar salto de línea
+
+        System.out.print("Ingrese la unidad (Celsius, Fahrenheit, Kelvin): ");
+        String unidad = sc.nextLine().trim().toUpperCase();
+
+        Temperatura temperatura = new Temperatura(valor, unidad);
+        Conversion servicio = new Conversion();
+
+        double resultado = servicio.convertirACelsius(temperatura);
+        System.out.println("La Temperatura en Celsius: " + resultado);
+    }
+}

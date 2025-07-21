@@ -1,0 +1,116 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package cl.unab.android.ae2_abp4.ae2abp4;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alejandra Flaño
+ * fecha de creación 24/06/2025
+ * 
+ * actividad bootcamp desarrollo app moviles Android
+ * 
+ * 
+ */
+public class AE2ABP4 {
+/**
+ *Esta app debera ingresar las donaciones que se reciben y al final del proceso 
+ * deplegara la informacion resumen solicitada  
+ */
+       
+    public static void main(String[] args) {
+        
+         //declaracion parea leer variables
+        Scanner sc = new Scanner(System.in);
+        
+        // declaracion de variables
+        int opcion =0, cont1000=0, cont500=0, cont0=0;
+        double monto =0, totalS=0, totalE=0, totalA=0, totalM=0, totalG=0 ;
+        boolean salir=false;
+        
+        //Ciclo mientras la opcion sea igual a 0 pida una nueva alternativa
+        while ((opcion==0) && (salir != true)){
+            // Menú de opciones
+            System.out.println("\nSeleccione la causa de la donación:");
+            System.out.println("1. SALUD");
+            System.out.println("2. EDUCACION");
+            System.out.println("3. MEDIOAMBIENTE");
+            System.out.println("4. ALIMENTACION");
+            System.out.println("5. FINALIZAR");
+            System.out.print("Opcion: ");
+            
+            /**aca se lee la opcion*/
+            opcion = sc.nextInt();
+
+            if  ((opcion != 0) && (salir != true) && (opcion !=5)) {
+                
+                /**aca se lee el monto donado*/ 
+                do {
+                     System.out.print ("ingrese monto de la donacion: " );
+                     monto =sc.nextDouble();
+                }while (monto ==0);
+                
+                /**se suma el monto de la donacion al total general de las d0onaciones*/
+                totalG += monto;
+                
+                /**segun la seleccion realizada, se realiza la suma al total del tipo de donacion**/ 
+                switch (opcion) {
+                    
+                    /**Salud*/
+                    case 1:
+                        totalS += monto;                        
+                        opcion = 0;
+                        break;
+                    /**Educacion*/
+                    case 2:
+                        totalE += monto; 
+                        opcion = 0;
+                        break;
+                    /*Medioambiente**/
+                    case 3:
+                        totalM += monto;
+                        opcion = 0;
+                        break;
+                    /**Alimentacion*/
+                    case 4:
+                        totalA += monto;
+                        opcion = 0;
+                        break;
+                    default:
+                        opcion = 0;
+                }
+                
+                if (monto<= 500){
+                    cont0 += 1;
+                }
+                else {
+                    if (monto> 500 && monto <=1000){
+                        cont500 += 1;
+                    }
+                    else {
+                        cont1000 += 1;
+                    }
+                }
+                
+            }
+            else {
+                System.out.println("Se realizaron " + cont1000 + " donaciones mayores a 1000");
+                System.out.println("Se realizaron " + cont500 + " donaciones entre 500 y 1000");
+                System.out.println("Se realizaron " + cont0 + " donaciones menores a 500");
+                System.out.println(" ");
+                System.out.println("El total de donaciones para salud es de : " + totalS);
+                System.out.println("El total de donaciones para educacion es de : " + totalE);
+                System.out.println("El total de donaciones para medioambiente es de : " + totalM);
+                System.out.println("El total de donaciones para alimentacion es de : " + totalA);
+                System.out.println(" ");
+                System.out.println("El total general de donaciones es de : " + totalG);
+                
+                System.out.println ("Gracias por usar nuestro sistema");
+            }
+           
+        }
+    }
+}
