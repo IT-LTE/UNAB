@@ -7,10 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ABPRO-AE3" />
-        <module name="ABP4-AE3" />
-        <module name="ABP5-AE3" />
-        <module name="ABP-AE4" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ABP-AE4" target="17" />
+      <module name="ABP4-AE3" target="17" />
+      <module name="ABP5-AE3" target="17" />
+      <module name="ABPRO-AE5" target="17" />
+      <module name="ABPROAE3" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

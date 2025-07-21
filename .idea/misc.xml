@@ -11,6 +11,14 @@
         <option value="$PROJECT_DIR$/Modulo 2/ABPRO AE5/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Modulo 2/ABP AE4/pom.xml" />
+        <option value="$PROJECT_DIR$/Modulo 2/ABP4 AE3/pom.xml" />
+        <option value="$PROJECT_DIR$/Modulo 2/ABP5 AE3/pom.xml" />
+        <option value="$PROJECT_DIR$/Modulo 2/ABPRO AE5/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="25" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
