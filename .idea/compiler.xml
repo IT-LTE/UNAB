@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ABPRO-AE3" />
         <module name="ABP4-AE3" />
+        <module name="ABP5-AE3" />
+        <module name="ABP-AE4" />
       </profile>
     </annotationProcessing>
   </component>
