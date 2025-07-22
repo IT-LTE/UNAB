@@ -7,11 +7,9 @@ package cl.lte;
  * Ejercicio de caja chica
  */
 
-import java.time.LocalTime;
-
 public class App {
     public static void main(String[] args) {
-        Menu menu = new Menu();
-        menu.mostrar();
+        GestionUsuario gestion = new GestionUsuario();
+        gestion.iniciarSesion();
     }
 }
