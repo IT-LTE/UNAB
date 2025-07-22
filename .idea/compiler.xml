@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ABPRO-AE3" />
         <module name="Cajachica" />
+        <module name="ABPRO-AE3" />
+        <module name="ABP4AE3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
