@@ -1,4 +1,4 @@
-package org.example;
+package cl.lte;
 
 /**
  * Hello world!
