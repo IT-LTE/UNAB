@@ -9,7 +9,12 @@ package cl.lte;
 
 public class App {
     public static void main(String[] args) {
-        GestionUsuario gestion = new GestionUsuario();
-        gestion.iniciarSesion();
+        GestionUsuario gestionUsuario = new GestionUsuario();
+        boolean accesoOk = gestionUsuario.iniciarSesion();
+
+        if (accesoOk) {
+            GestionProyecto gestionProyecto = new GestionProyecto();
+            gestionProyecto.mostrarProyectosDisponibles();
+        }
     }
 }
