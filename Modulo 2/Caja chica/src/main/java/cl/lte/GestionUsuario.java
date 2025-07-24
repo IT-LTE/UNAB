@@ -1,49 +1,35 @@
 package cl.lte;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
-import java.time.LocalTime;
 
 public class GestionUsuario {
-    private Usuario usuario;
+    private final Scanner sc = new Scanner(System.in);
 
-    public GestionUsuario() {
-        this.usuario = new Usuario("ftapia", "clavePAR", "claveIMPAR");
-    }
+    public Usuario ingresarUsuario() {
+        System.out.println("Ingrese nombre de usuario:");
+        String nombre = sc.nextLine().trim().toUpperCase();
 
-    public boolean iniciarSesion() {
-        Scanner sc = new Scanner(System.in);
+        Usuario usuario = new Usuario("FTAPIA", "1234", "5678");
 
-        System.out.print("Ingrese nombre de usuario: ");
-        String nombreIngresado = sc.nextLine().trim().toLowerCase();
-
-        if (!validarNombre(nombreIngresado)) {
-            System.out.println("Usuario no valido");
-            return false;
+        if (!usuario.getNombre().equals(nombre)) {
+            System.out.println("Usuario no válido");
+            return null;
         }
 
-        System.out.print("Ingrese clave: ");
-        String claveIngresada = sc.nextLine().trim();
+        System.out.println("Ingrese clave:");
+        String clave = sc.nextLine().trim();
 
-        int minuto = LocalTime.now().getMinute();
+        int minuto = LocalDateTime.now().getMinute();
+        boolean esPar = minuto % 2 == 0;
 
-        if (usuario.claveValida(claveIngresada, minuto)) {
-            System.out.println("Acceso concedido");
-            return true;
-        }
-
-        mostrarMensajeErrorClave(minuto);
-        return false;
-    }
-
-    private boolean validarNombre(String nombre) {
-        return nombre.equals(usuario.getNombre());
-    }
-
-    private void mostrarMensajeErrorClave(int minuto) {
-        if (minuto % 2 == 0) {
-            System.out.println("Clave incorrecta para minuto par");
+        if (esPar && clave.equals(usuario.getClavePar())) {
+            return usuario;
+        } else if (!esPar && clave.equals(usuario.getClaveImpar())) {
+            return usuario;
         } else {
-            System.out.println("Clave incorrecta para minuto impar");
+            System.out.println("Clave incorrecta para el minuto actual");
+            return null;
         }
     }
 }

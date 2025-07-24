@@ -10,11 +10,12 @@ package cl.lte;
 public class App {
     public static void main(String[] args) {
         GestionUsuario gestionUsuario = new GestionUsuario();
-        boolean accesoOk = gestionUsuario.iniciarSesion();
+        Usuario usuario = gestionUsuario.ingresarUsuario();
 
-        if (accesoOk) {
-            GestionProyecto gestionProyecto = new GestionProyecto();
-            gestionProyecto.mostrarProyectosDisponibles();
+        if (usuario != null) {
+            GestionCajaChica gestionCajaChica = new GestionCajaChica();
+            gestionCajaChica.mostrarCajasDisponibles(usuario);
+            gestionCajaChica.simularRegistrosCaja();
         }
     }
 }

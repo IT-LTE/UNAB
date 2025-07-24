@@ -15,8 +15,11 @@ public class Usuario {
         return nombre;
     }
 
-    public boolean claveValida(String clave, int minuto) {
-        boolean esPar = minuto % 2 == 0;
-        return esPar ? clave.equals(clavePar) : clave.equals(claveImpar);
+    public String getClavePar() {
+        return clavePar;
+    }
+
+    public String getClaveImpar() {
+        return claveImpar;
     }
 }
