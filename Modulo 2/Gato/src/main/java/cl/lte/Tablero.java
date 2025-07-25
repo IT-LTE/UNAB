@@ -8,7 +8,6 @@ public class Tablero {
         inicializar();
     }
 
-    // Inicializa el tablero con guiones
     public void inicializar() {
         for (int fila = 0; fila < 3; fila++) {
             for (int col = 0; col < 3; col++) {
@@ -17,7 +16,6 @@ public class Tablero {
         }
     }
 
-    // Dibuja el tablero en consola con flechas guía
     public void mostrar() {
         System.out.println("\n   ↘ columnas");
         System.out.println("    0   1   2 ");
@@ -31,17 +29,14 @@ public class Tablero {
         System.out.println("↑\nfilas");
     }
 
-    // Coloca ficha en una posición dada
     public void colocarFicha(int fila, int columna, char ficha) {
         tablero[fila][columna] = ficha;
     }
 
-    // Verifica si la celda está vacía
     public boolean estaVacio(int fila, int columna) {
         return tablero[fila][columna] == '-';
     }
 
-    // Revisa si quedan espacios para jugar
     public boolean hayEspaciosDisponibles() {
         for (int fila = 0; fila < 3; fila++) {
             for (int col = 0; col < 3; col++) {
@@ -53,8 +48,34 @@ public class Tablero {
         return false;
     }
 
-    // Devuelve el símbolo de una celda
     public char getFicha(int fila, int columna) {
         return tablero[fila][columna];
+    }
+
+    // ✅ Nuevo: Verificar si la ficha dada ha ganado
+    public boolean verificarGanador(char ficha) {
+        // Verificar filas
+        for (int fila = 0; fila < 3; fila++) {
+            if (tablero[fila][0] == ficha && tablero[fila][1] == ficha && tablero[fila][2] == ficha) {
+                return true;
+            }
+        }
+
+        // Verificar columnas
+        for (int col = 0; col < 3; col++) {
+            if (tablero[0][col] == ficha && tablero[1][col] == ficha && tablero[2][col] == ficha) {
+                return true;
+            }
+        }
+
+        // Verificar diagonales
+        if (tablero[0][0] == ficha && tablero[1][1] == ficha && tablero[2][2] == ficha) {
+            return true;
+        }
+        if (tablero[0][2] == ficha && tablero[1][1] == ficha && tablero[2][0] == ficha) {
+            return true;
+        }
+
+        return false;
     }
 }

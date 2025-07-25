@@ -8,7 +8,6 @@ public class CPU {
         Random random = new Random();
         int fila, columna;
 
-        // Busca una celda vacía al azar
         do {
             fila = random.nextInt(3);
             columna = random.nextInt(3);

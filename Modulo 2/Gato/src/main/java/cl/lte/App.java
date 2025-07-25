@@ -12,35 +12,54 @@ public class App {
         Tablero tablero = new Tablero();
         CPU cpu = new CPU();
 
-        String turno = "JUGADOR"; // Comienza el jugador
+        String turno = "JUGADOR";
+        boolean hayGanador = false;
 
         System.out.println("¡Bienvenido al juego del Gato!");
-        tablero.mostrar(); // Mostrar el tablero inicial
+        tablero.mostrar();
 
-        // Bucle principal del juego
         do {
             if (turno.equals("JUGADOR")) {
                 System.out.print(">> Tu turno (X). Ingresa fila y columna (ej: 0 2): ");
                 int fila = sc.nextInt();
                 int columna = sc.nextInt();
 
-                // Validar posición libre
                 if (tablero.estaVacio(fila, columna)) {
                     tablero.colocarFicha(fila, columna, 'X');
-                    turno = "CPU"; // Cambiar el turno
+
+                    if (tablero.verificarGanador('X')) {
+                        hayGanador = true;
+                        System.out.println("🎉 ¡Felicidades! ¡Ganaste!");
+                        tablero.mostrar();
+                        break;
+                    }
+
+                    turno = "CPU";
                 } else {
-                    System.out.println("¡Esa posición ya está ocupada!");
+                    System.out.println("⚠ Esa posición ya está ocupada.");
                 }
+
             } else {
                 cpu.realizarJugada(tablero);
-                turno = "JUGADOR"; // Cambiar el turno
+
+                if (tablero.verificarGanador('O')) {
+                    hayGanador = true;
+                    System.out.println("💻 La CPU ha ganado.");
+                    tablero.mostrar();
+                    break;
+                }
+
+                turno = "JUGADOR";
             }
 
-            tablero.mostrar(); // Mostrar el tablero después de cada jugada
+            tablero.mostrar();
 
-        } while (tablero.hayEspaciosDisponibles());
+        } while (!hayGanador && tablero.hayEspaciosDisponibles());
 
-        System.out.println(">> ¡El tablero está lleno!");
+        if (!hayGanador) {
+            System.out.println("🤝 ¡Empate! El tablero está lleno.");
+        }
+
         System.out.println(">> Fin de la partida.");
     }
 }
