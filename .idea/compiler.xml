@@ -11,6 +11,7 @@
         <module name="Gato" />
         <module name="ABP4AE3" />
         <module name="ABP5E3" />
+        <module name="EvaluacionFinal" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
