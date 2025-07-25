@@ -67,8 +67,8 @@ public class Juego {
             columna = leerNumero();
 
             if (fila >= 0 && fila <= 2 && columna >= 0 && columna <= 2) {
-                if (tablero.estaVacia(fila, columna)) {
-                    tablero.marcarCasilla(fila, columna, 'X');
+                if (tablero.estaVacio(fila, columna)) {
+                    tablero..marcarCasilla(fila, columna, 'X');
                     tablero.mostrar();
                     break;
                 } else {
