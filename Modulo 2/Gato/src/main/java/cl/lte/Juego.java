@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Juego {
     private Tablero tablero;
-    private char turnoActual; // 'X' para jugador, 'O' para CPU
+    private char turnoActual; // 'X' jugador, 'O' CPU
     private Scanner sc;
 
     public Juego() {
@@ -12,19 +12,24 @@ public class Juego {
         sc = new Scanner(System.in);
     }
 
-    // Inicia el flujo principal del juego
     public void iniciar() {
         System.out.println("Bienvenido al Juego del Gato 🐱\n");
         tablero.mostrar();
 
         elegirQuienParte();
         System.out.println("Turno inicial: " + (turnoActual == 'X' ? "Jugador (X)" : "CPU (O)"));
+        System.out.println();
 
-        // Aún no implementamos jugadas, eso será en próximas etapas
-        System.out.println("\n[Etapa 2] Juego listo para avanzar con lógica de turnos...");
+        // Jugada inicial si parte el jugador (por ahora solo jugamos una vez)
+        if (turnoActual == 'X') {
+            turnoJugador();
+        } else {
+            System.out.println("[⚠️ CPU aún no implementado en esta etapa]");
+        }
+
+        System.out.println("\n[Etapa 3] Jugada realizada. Continuaremos con más lógica en próximas etapas.");
     }
 
-    // Pregunta quién comienza el juego
     private void elegirQuienParte() {
         int eleccion = 0;
 
@@ -44,7 +49,43 @@ public class Juego {
             } else {
                 System.out.println("⚠️ Opción inválida. Intente nuevamente.\n");
             }
-
         } while (eleccion == 0);
+    }
+
+    // Nueva lógica para que el jugador haga una jugada
+    private void turnoJugador() {
+        int fila = -1;
+        int columna = -1;
+
+        System.out.println("Tu turno, Jugador (X)");
+
+        while (true) {
+            System.out.print("Ingrese fila (0-2): ");
+            fila = leerNumero();
+
+            System.out.print("Ingrese columna (0-2): ");
+            columna = leerNumero();
+
+            if (fila >= 0 && fila <= 2 && columna >= 0 && columna <= 2) {
+                if (tablero.estaVacia(fila, columna)) {
+                    tablero.marcarCasilla(fila, columna, 'X');
+                    tablero.mostrar();
+                    break;
+                } else {
+                    System.out.println("⚠️ Esa casilla ya está ocupada. Intente otra.\n");
+                }
+            } else {
+                System.out.println("⚠️ Posición inválida. Use valores entre 0 y 2.\n");
+            }
+        }
+    }
+
+    // Método auxiliar para leer número del teclado
+    private int leerNumero() {
+        String entrada = sc.nextLine().trim();
+        if (entrada.length() == 1 && Character.isDigit(entrada.charAt(0))) {
+            return Integer.parseInt(entrada);
+        }
+        return -1;
     }
 }

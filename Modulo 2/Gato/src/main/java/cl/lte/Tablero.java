@@ -8,32 +8,37 @@ public class Tablero {
         inicializar();
     }
 
-    // Llena el tablero con espacios vacíos
-    public void inicializar() {
-        for (int fila = 0; fila < 3; fila++) {
-            for (int columna = 0; columna < 3; columna++) {
-                tablero[fila][columna] = ' ';
+    private void inicializar() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                tablero[i][j] = ' ';
             }
         }
     }
 
-    // Dibuja el tablero con indicadores de filas y columnas
     public void mostrar() {
-        System.out.println("\n     → Columnas");
+        System.out.println("     → Columnas");
         System.out.println("     0   1   2");
         System.out.println("   ┌───┬───┬───┐");
-        for (int fila = 0; fila < 3; fila++) {
-            System.out.print(" " + fila + " │"); // ← Fila
-            for (int columna = 0; columna < 3; columna++) {
-                System.out.print(" " + tablero[fila][columna] + " │");
+        for (int i = 0; i < 3; i++) {
+            System.out.print(" " + i + " │");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(" " + tablero[i][j] + " │");
             }
             System.out.println();
-            if (fila < 2) {
+            if (i < 2) {
                 System.out.println("   ├───┼───┼───┤");
             }
         }
         System.out.println("   └───┴───┴───┘");
-        System.out.println(" ↑");
-        System.out.println(" Fila\n");
+        System.out.println(" ↑\n Fila");
+    }
+
+    public boolean estaVacia(int fila, int columna) {
+        return tablero[fila][columna] == ' ';
+    }
+
+    public void marcarCasilla(int fila, int columna, char simbolo) {
+        tablero[fila][columna] = simbolo;
     }
 }
