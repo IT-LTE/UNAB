@@ -1,4 +1,5 @@
 package cl.lte;
 
-public class Administrativo {
+public class Administrativo extends Usuario {
 }
+

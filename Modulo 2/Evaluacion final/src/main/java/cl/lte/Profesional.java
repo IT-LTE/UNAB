@@ -1,4 +1,4 @@
 package cl.lte;
 
-public class Profesional {
+public class Profesional extends Usuario {
 }
