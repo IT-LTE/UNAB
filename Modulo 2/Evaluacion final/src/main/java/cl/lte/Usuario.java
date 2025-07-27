@@ -1,5 +1,10 @@
 package cl.lte;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+
 public class Usuario implements Asesoria {
     private String nombre;
     private String fechaNacimiento;
@@ -13,15 +18,20 @@ public class Usuario implements Asesoria {
 
     @Override
     public void analizarUsuario() {
-        // Implementación del análisis del usuario
+        System.out.println("Analizando usuario: ");
+        System.out.println("Nombre: " + nombre);
+        System.out.println("RUN: " + run);
     }
 
+    // Lógica para calcular y mostrar la edad del usuario
     public String mostrarEdad(){
-        // Lógica para calcular y mostrar la edad del usuario
-        return "El usuario tiene " + calcularEdad() + " años.";
+        // Asumiendo que fechaNacimiento está en formato "dd/MM/yyyy"
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        // Aquí se debería calcular la edad basándose en la fecha de nacimiento
+        LocalDate fechaNac = LocalDate.parse(fechaNacimiento, dateFormatter);
+        int edad = Period.between(fechaNac, LocalDate.now()).getYears();
+        // Retornar la edad como un String
+        return "El usuario tiene " + edad + " años.";
     }
 
-    public int calcularEdad(){
-        return 0;
-    }
 }
