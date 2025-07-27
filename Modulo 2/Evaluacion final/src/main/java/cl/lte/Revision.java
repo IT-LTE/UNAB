@@ -16,7 +16,7 @@ public class Revision {
     private int estado; // 1: sin problemas, 2: con observaciones, 3: no aprueba
 
     public Revision() {}
-
+// constructor con parametros y metodo set para validar y asignar valores
     public Revision(int identificadorRevision, int identificadorVisita, String nombreRevision, String detalle, int estado) {
         this.identificadorRevision = identificadorRevision;
         this.identificadorVisita = identificadorVisita;
@@ -24,7 +24,7 @@ public class Revision {
         setDetalle(detalle);
         setEstado(estado);
     }
-
+// setter para validar que cumple con lo indicado longitud del nombre
     public void setNombreRevision(String nombreRevision) {
         if (nombreRevision == null || nombreRevision.length() < 10 || nombreRevision.length() > 50)
             throw new IllegalArgumentException("Nombre revision debe tener entre 10 y 50 caracteres.");
