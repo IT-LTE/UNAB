@@ -12,14 +12,14 @@ import java.util.Date;
 public class Accidente {
     private int identificadorAccidente;
     private int rutCliente;
-    private Date dia;
-    private String hora; // formato HH:MM
-    private String lugar;
-    private String origen;
+    private Date dia; //dia del accidente
+    private String hora; // formato HH:MM 
+    private String lugar; // lugar del accidente
+    private String origen; // origen o causa del accidente
     private String consecuencias;
 
     public Accidente() {}
-
+// constructor con los parametros
     public Accidente(int identificadorAccidente, int rutCliente, Date dia, String hora, String lugar, String origen, String consecuencias) {
         this.identificadorAccidente = identificadorAccidente;
         this.rutCliente = rutCliente;
@@ -57,7 +57,7 @@ public class Accidente {
             throw new IllegalArgumentException("Consecuencias maximo 100 caracteres.");
         this.consecuencias = consecuencias;
     }
-
+// metedo para mostar la informacion del accidente de forma legible
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
