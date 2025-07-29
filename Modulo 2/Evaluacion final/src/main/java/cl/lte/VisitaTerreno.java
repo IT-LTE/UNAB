@@ -1,6 +1,5 @@
 package cl.lte;
 
-import java.util.ArrayList;
 
 public class VisitaTerreno {
     public int identificador_visita; //obligatorio, número interno manejado por la compañía.
