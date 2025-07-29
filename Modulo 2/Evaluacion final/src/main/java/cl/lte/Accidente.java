@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package cl.unab.android.p1.prevensionriesgos;
+package cl.lte;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/**
- *
- * @author canas
- */
+
 public class Accidente {
     private int identificadorAccidente;
     private int rutCliente;
