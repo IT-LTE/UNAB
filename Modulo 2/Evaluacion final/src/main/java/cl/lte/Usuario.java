@@ -16,6 +16,10 @@ public class Usuario implements Asesoria {
         this.run = run;
     }
 
+    public int getRun() {
+        return run;
+    }
+
     @Override
     public void analizarUsuario() {
         System.out.println("Analizando usuario: ");
