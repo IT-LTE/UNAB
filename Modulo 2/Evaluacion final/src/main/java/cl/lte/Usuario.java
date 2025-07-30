@@ -15,10 +15,7 @@ public class Usuario implements Asesoria {
         setRun(run);
     }
 
-    public int getRun() {
-        return run;
-    }
-
+    
     @Override
     public void analizarUsuario() {
         System.out.println("Analizando usuario: ");
@@ -35,6 +32,13 @@ public class Usuario implements Asesoria {
         int edad = Period.between(fechaNac, LocalDate.now()).getYears();
         // Retornar la edad como un String
         return "El usuario tiene " + edad + " años.";
+    }
+
+    public int getRun() {
+        return run;
+    }
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
