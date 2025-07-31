@@ -28,9 +28,10 @@ public class Contenedor {
     }
 
     public boolean eliminarUsuario(int run) {
-        return usuarios.removeIf(u -> {
-            if (u instanceof Usuario) {
-                return ((Usuario) u).getRun() == run;
+        // Elimina cualquier objeto en la lista que sea un Usuario y que tenga el mismo Run
+        return usuarios.removeIf(usuario -> {
+            if (usuario instanceof Usuario) {
+                return ((Usuario) usuario).getRun() == run;
             }
             return false;
         });
@@ -42,21 +43,20 @@ public class Contenedor {
         }
     }
 
-    public void Listar_usuarios_por_tipo(String tipo) {
+    public void listar_usuarios_por_tipo(String tipo) {
         for (int i = 0; i < usuarios.size(); i++) {
-            Asesoria usu = usuarios.get(i);
-            String clase = usu.getClass().getSimpleName();
+            Asesoria usuario = usuarios.get(i);
+            String clase = usuario.getClass().getSimpleName();
             if (tipo.isBlank() || tipo.equalsIgnoreCase(clase)) {
-                String texto = usu.toString();
-                System.out.println(texto);
+                usuario.analizarUsuario();
             }
         }
     }
 
     public void listar_capacitacion() {
         for (int i = 0; i < capacitaciones.size(); i++) {
-            Capacitacion cp = capacitaciones.get(i);
-            String texto = cp.toString();
+            Capacitacion cap = capacitaciones.get(i);
+            String texto = cap.toString();
             System.out.println(texto);
         }
     }

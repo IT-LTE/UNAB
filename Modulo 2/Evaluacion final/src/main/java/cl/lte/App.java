@@ -63,7 +63,7 @@ public class App {
                 case 7:
                     System.out.print("Ingrese el tipo de usuario a listar (Cliente, Profesional, Administrativo): ");
                     String tipo = scanner.nextLine();
-                    contenedor.Listar_usuarios_por_tipo(tipo);
+                    contenedor.listar_usuarios_por_tipo(tipo);
                     break;
 
                 case 8:

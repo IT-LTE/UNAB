@@ -18,5 +18,21 @@ public class Administrativo extends Usuario {
         System.out.println("Experiencia previa: " + experienciaPrevia);
     }
 
+    public void setArea(String area) {
+        if(area.length() >= 5 && area.length() <= 10) {
+            this.area = area;
+        }else {
+            System.out.println("Area debe tener entre 5 y 10 caracteres.");
+        }
+    }
+
+    public void setExperienciaPrevia(String experienciaPrevia) {
+        if(experienciaPrevia.length() <= 100){
+            this.experienciaPrevia = experienciaPrevia;
+        } else {
+            System.out.println("Experiencia debe tener un maximo de 100 caracteres.");
+        }
+    }
+
 }
 

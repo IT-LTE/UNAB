@@ -18,7 +18,7 @@ public class Usuario implements Asesoria {
     
     @Override
     public void analizarUsuario() {
-        System.out.println("Analizando usuario: ");
+        System.out.println("\nAnalizando usuario: ");
         System.out.println("Nombre: " + nombre);
         System.out.println("RUN: " + run);
     }
