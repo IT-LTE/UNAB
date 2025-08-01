@@ -3,42 +3,78 @@ package cl.lte;
 import java.util.ArrayList;
 
 public class Contenedor {
-    private ArrayList<Asesoria> lusuarios;
-    private ArrayList<Capacitacion> lcapacitaciones;
+    private ArrayList<Asesoria> usuarios;
+    private ArrayList<Capacitacion> capacitaciones;
 
-    public void agregar_cliente(Cliente cliente){
-        lusuarios.add(cliente);
-    }
-    public void agregar_profesional(Profesional profesional){
-        lusuarios.add(profesional);
-    }
-    public void agregar_profesional(Administrativo administrativo){
-        lusuarios.add(administrativo);
+    public Contenedor() {
+        usuarios = new ArrayList<>();
+        capacitaciones = new ArrayList<>();
     }
 
-    public void agregar_capacitacion(Capacitacion capacitacion){
-        lcapacitaciones.add(capacitacion);
+    public void agregar_cliente(Cliente cliente) {
+        usuarios.add(cliente);
     }
 
-    public void eliminarUsuario(int run) {
-        lusuarios.removeIf(u -> (u instanceof Usuario) && ((Usuario) u).getRun() == run);
+    public void agregar_profesional(Profesional profesional) {
+        usuarios.add(profesional);
     }
-    
-    public void Listar_usuarios(String tipo){
-        for(int i= 0; i<lusuarios.size(); i++){
-            Asesoria usu = lusuarios.get(i);
-            String clase = usu.getClass().getSimpleName();
-            if(tipo.isBlank()|| tipo.equalsIgnoreCase(clase) ){
-                String texto = usu.toString();
-                System.out.println(texto);
+
+    public void agregar_administrativo(Administrativo administrativo) {
+        usuarios.add(administrativo);
+    }
+
+    public void agregar_capacitacion(Capacitacion capacitacion) {
+        capacitaciones.add(capacitacion);
+    }
+
+    public boolean eliminarUsuario(int run) {
+        // Elimina cualquier objeto en la lista que sea un Usuario y que tenga el mismo Run
+        return usuarios.removeIf(usuario -> {
+            if (usuario instanceof Usuario) {
+                return ((Usuario) usuario).getRun() == run;
+            }
+            return false;
+        });
+    }
+
+    public void listarUsuarios(){
+        for(Asesoria usuario : usuarios) {
+            usuario.analizarUsuario();
+        }
+    }
+
+    public void listar_usuarios_por_tipo(String tipo) {
+        for (int i = 0; i < usuarios.size(); i++) {
+            Asesoria usuario = usuarios.get(i);
+            String clase = usuario.getClass().getSimpleName();
+            if (tipo.isBlank() || tipo.equalsIgnoreCase(clase)) {
+                usuario.analizarUsuario();
             }
         }
     }
-    public void listar_capacitacion(){
-        for(int i= 0; i<lcapacitaciones.size(); i++){
-            Capacitacion cp=lcapacitaciones.get(i);
-            String texto = cp.toString();
+
+    public void listar_capacitacion() {
+        for (int i = 0; i < capacitaciones.size(); i++) {
+            Capacitacion cap = capacitaciones.get(i);
+            String texto = cap.toString();
             System.out.println(texto);
         }
+    }
+
+    public boolean existeUsuario(int run) {
+        for (Asesoria usuario : usuarios) {
+            if (usuario instanceof Usuario && ((Usuario) usuario).getRun() == run) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Asesoria> getUsuarios() {
+        return usuarios;
+    }
+
+    public ArrayList<Capacitacion> getCapacitaciones() {
+        return capacitaciones;
     }
 }
