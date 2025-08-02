@@ -12,5 +12,6 @@ public class CapacitacionTest {
 
         assertTrue(cap.toString().contains("Capacitacion"));
         assertTrue(cap.toString().contains("Auditorio"));
+
     }
 }
