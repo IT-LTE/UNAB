@@ -9,8 +9,9 @@
         <module name="ABPRO-AE3" />
         <module name="Cajachica" />
         <module name="Gato" />
-        <module name="ABP4AE3" />
+        <module name="ABP AE4" />
         <module name="ABP5E3" />
+        <module name="ABP4AE3" />
         <module name="EvaluacionFinal" />
       </profile>
     </annotationProcessing>
