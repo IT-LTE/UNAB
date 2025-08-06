@@ -11,6 +11,7 @@
         <module name="Gato" />
         <module name="ABP AE4" />
         <module name="ABP5E3" />
+        <module name="ABPRO AE5" />
         <module name="ABP4AE3" />
         <module name="EvaluacionFinal" />
       </profile>
