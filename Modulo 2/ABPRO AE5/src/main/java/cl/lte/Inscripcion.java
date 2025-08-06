@@ -17,11 +17,17 @@ public class Inscripcion {
         return curso;
     }
 
-    public boolean esDeEstudiante(String rut) {
-        return estudiante.getRut().equalsIgnoreCase(rut);
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
 
-    public boolean esDelCurso(String codigo) {
-        return curso.getCodigo().equalsIgnoreCase(codigo);
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    @Override
+    public String toString() {
+        return "Estudiante: " + estudiante.getNombre() +
+                ", Curso: " + curso.getNombre();
     }
 }

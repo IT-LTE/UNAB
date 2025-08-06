@@ -6,7 +6,7 @@ public class Menu {
     private SistemaAcademico sistema;
     private Scanner sc;
 
-    public Menu(SistemaAcademico sistema, Scanner sc) {
+    public Menu(SistemaAcademico sistema) {
         this.sistema = sistema;
         this.sc = sc;
     }
