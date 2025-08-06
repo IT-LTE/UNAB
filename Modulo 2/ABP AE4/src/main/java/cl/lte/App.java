@@ -8,5 +8,4 @@ public class App {
         GestionTareas gestor = new GestionTareas();
         gestor.mostrarMenu();
     }
-    }
 }
