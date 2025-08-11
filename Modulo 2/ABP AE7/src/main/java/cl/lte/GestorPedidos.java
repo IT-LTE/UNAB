@@ -2,6 +2,14 @@ package cl.lte;
 
 public class GestorPedidos {
 
+    private RepositorioProducto repositorio;
+
+    public GestorPedidos() {}
+
+    public GestorPedidos(RepositorioProducto repositorio) {
+        this.repositorio = repositorio;
+    }
+
     public void realizarPedido(Pedido pedido) {
         for (int i = 0; i < pedido.getProductos().size(); i++) {
             Producto p = pedido.getProductos().get(i);
@@ -24,5 +32,12 @@ public class GestorPedidos {
             }
         }
         return true;
+    }
+
+    public Producto obtenerProductoPorId(int id) {
+        if (repositorio != null) {
+            return repositorio.buscarPorId(id);
+        }
+        return null;
     }
 }
