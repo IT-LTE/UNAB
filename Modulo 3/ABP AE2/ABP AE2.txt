@@ -1,0 +1,40 @@
+-- ==========================================================
+-- 1. Ventas donde subtotal + Impuesto <> total
+-- ==========================================================
+
+SELECT *
+FROM ventas
+WHERE (subtotal + impuesto) <> total;
+
+-- ==========================================================
+-- 2. Suma Total de todas las ventas
+-- ==========================================================
+
+SELECT SUM(total) AS suma_total_ventas
+FROM ventas;
+
+-- ==========================================================
+-- 3. Listado de ventas de Clienta Antonia Aranda
+-- ==========================================================
+
+
+SELECT *
+FROM ventas
+JOIN clientes ON ventas.clientes_idcliente = clientes.idclientes
+WHERE clientes.nombre = 'Antonia' AND clientes.apellidos = 'Aranda';
+
+-- ==========================================================
+-- 4. Clientes sin direccion
+-- ==========================================================
+
+SELECT idclientes, CONCAT(nombre, ' ', apellidos) AS nombre_completo
+FROM clientes
+WHERE direccion IS NULL OR direccion = '';
+
+-- ==========================================================
+-- 5. Venta mínima y maxima
+-- ==========================================================
+
+SELECT MIN(total) AS venta_minima,
+       MAX(total) AS venta_maxima
+FROM ventas;

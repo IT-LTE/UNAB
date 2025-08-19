@@ -1,0 +1,71 @@
+-- 1. Crear la base de datos y usarla
+CREATE DATABASE IF NOT EXISTS ventasdiarias;
+USE ventasdiarias;
+
+-- 2. Crear tabla clientes
+CREATE TABLE clientes (
+    idcliente INT PRIMARY KEY AUTO_INCREMENT,
+    nombres VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    direccion VARCHAR(70),
+    telefono BIGINT
+);
+
+-- 3. Crear tabla venta
+CREATE TABLE venta (
+    idventa INT PRIMARY KEY AUTO_INCREMENT,
+    vendedor VARCHAR(50) NOT NULL,
+    cantarticulos INT NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    impuesto DECIMAL(10,2) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    clientes_idcliente INT NOT NULL,
+    FOREIGN KEY (clientes_idcliente) REFERENCES clientes(idcliente)
+);
+
+-- 4. Crear tabla producto
+CREATE TABLE producto (
+    idproducto INT PRIMARY KEY AUTO_INCREMENT,
+    nombreprod VARCHAR(50) NOT NULL,
+    valor INT NOT NULL,
+    CONSTRAINT uq_nombreprod UNIQUE (nombreprod) -- Requerimiento 1
+);
+
+-- 5. Crear tabla detalleventa
+CREATE TABLE detalleventa (
+    ventas_idventa INT NOT NULL,
+    producto_idproducto INT NOT NULL,
+    cantidad INT NOT NULL,
+    PRIMARY KEY (ventas_idventa, producto_idproducto),
+    FOREIGN KEY (ventas_idventa) REFERENCES venta(idventa),
+    FOREIGN KEY (producto_idproducto) REFERENCES producto(idproducto)
+);
+
+-- ================================
+--     Requerimientos
+-- ================================
+INSERT INTO producto (nombreprod, valor) VALUES
+('Pan', 1000),
+('Leche', 1200),
+('Arroz', 900),
+('Huevos', 2500);
+
+INSERT INTO clientes (nombres, apellidos, direccion, telefono) VALUES
+('Juan', 'Pérez', 'Av. Chile 123', 987654321),
+('María', 'López', 'Calle 10 #45', 912345678);
+
+INSERT INTO venta (vendedor, cantarticulos, subtotal, impuesto, total, clientes_idcliente) VALUES
+('Pedro', 3, 3000, 570, 3570, 1),
+('Ana', 5, 5600, 1064, 6664, 2);
+
+INSERT INTO detalleventa (ventas_idventa, producto_idproducto, cantidad) VALUES
+(1, 1, 2), -- 2 Pan
+(1, 2, 1), -- 1 Leche
+(2, 1, 1), -- 1 Pan
+(2, 3, 2), -- 2 Arroz
+(2, 4, 2), -- 2 Huevos
+(1, 3, 1), -- 1 Arroz
+(1, 4, 1), -- 1 Huevos
+(2, 2, 1); -- 1 Leche
+
+COMMIT;

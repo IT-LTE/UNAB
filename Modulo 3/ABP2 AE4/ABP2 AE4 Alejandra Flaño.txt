@@ -1,0 +1,86 @@
+-- Seleccionar la base de datos
+USE ventasdiarias;
+
+START TRANSACTION;
+
+-- =========================================
+-- 1. Crear tabla categoria (primero para evitar error de FK)
+-- =========================================
+CREATE TABLE IF NOT EXISTS categoria (
+  idcategoria INT NOT NULL,
+  nombrecategoria VARCHAR(75) NOT NULL,
+  CONSTRAINT pk_categoria PRIMARY KEY (idcategoria),
+  CONSTRAINT chk_idcategoria CHECK (idcategoria BETWEEN 0 AND 999999)
+) ENGINE=InnoDB;
+
+-- =========================================
+-- 2. Modificar tabla venta
+-- =========================================
+ALTER TABLE venta
+  MODIFY idventa INT NOT NULL,
+  MODIFY vendedor VARCHAR(50) NOT NULL,
+  MODIFY cantarticulos INT NOT NULL,
+  MODIFY subtotal DECIMAL(9,2) NOT NULL,
+  MODIFY impuesto DECIMAL(9,2) NOT NULL,
+  MODIFY total DECIMAL(12,2) NOT NULL,
+  MODIFY clientes_idcliente INT NOT NULL;
+
+-- Agregar validaciones de rango
+ALTER TABLE venta
+  ADD CONSTRAINT chk_idventa CHECK (idventa BETWEEN 0 AND 999999),
+  ADD CONSTRAINT chk_cantarticulos CHECK (cantarticulos BETWEEN 0 AND 999),
+  ADD CONSTRAINT chk_subtotal CHECK (subtotal >= 0),
+  ADD CONSTRAINT chk_impuesto CHECK (impuesto >= 0),
+  ADD CONSTRAINT chk_total CHECK (total >= 0),
+  ADD CONSTRAINT chk_clientes_idcliente CHECK (clientes_idcliente BETWEEN 0 AND 999999999);
+
+-- =========================================
+-- 3. Modificar tabla clientes
+-- =========================================
+ALTER TABLE clientes
+  MODIFY idcliente INT NOT NULL,
+  MODIFY nombres VARCHAR(50) NOT NULL,
+  MODIFY apellidos VARCHAR(50) NOT NULL,
+  MODIFY direccion VARCHAR(70),
+  MODIFY telefono VARCHAR(30);
+
+ALTER TABLE clientes
+  ADD CONSTRAINT chk_idcliente CHECK (idcliente BETWEEN 0 AND 999999999);
+
+-- =========================================
+-- 4. Modificar tabla producto
+-- =========================================
+ALTER TABLE producto
+  MODIFY idproducto INT NOT NULL,
+  MODIFY nombreprod VARCHAR(50) NOT NULL,
+  MODIFY valor DECIMAL(10,2) NOT NULL;
+
+ALTER TABLE producto
+  ADD COLUMN IF NOT EXISTS categoria_idcategoria INT NULL,
+  ADD CONSTRAINT chk_idproducto CHECK (idproducto > 0),
+  ADD CONSTRAINT chk_valor CHECK (valor >= 0),
+  ADD CONSTRAINT chk_categoria_idcategoria CHECK (categoria_idcategoria BETWEEN 0 AND 999999);
+
+-- =========================================
+-- 5. Agregar FK producto → categoria
+-- =========================================
+ALTER TABLE producto
+  ADD CONSTRAINT fk_producto_categoria
+  FOREIGN KEY (categoria_idcategoria)
+  REFERENCES categoria(idcategoria);
+
+-- =========================================
+-- 6. Modificar tabla detalleventa
+-- =========================================
+ALTER TABLE detalleventa
+  MODIFY ventas_idventa INT NOT NULL,
+  MODIFY producto_idproducto INT NOT NULL,
+  MODIFY cantidad INT NOT NULL;
+
+ALTER TABLE detalleventa
+  ADD CONSTRAINT chk_ventas_idventa CHECK (ventas_idventa BETWEEN 0 AND 999999),
+  ADD CONSTRAINT chk_producto_idproducto CHECK (producto_idproducto > 0),
+  ADD CONSTRAINT chk_cantidad CHECK (cantidad >= 0);
+
+-- Confirmar cambios
+COMMIT;
