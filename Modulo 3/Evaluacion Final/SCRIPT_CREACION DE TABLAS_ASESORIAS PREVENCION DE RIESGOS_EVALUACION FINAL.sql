@@ -95,7 +95,7 @@ CREATE TABLE Pagos_clientes (
 	idPagos_clientes INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     pagofecha DATE NOT NULL,
     pagomonto INT NOT NULL, 
-    pagomes DATE NOT NULL,
+    pagomes VARCHAR (15) NOT NULL,
     pagoaño YEAR NOT NULL, 
     Cliente_rutcliente INT NOT NULL, 
     CONSTRAINT fk_Pagos_clientes_Cliente FOREIGN KEY (Cliente_rutcliente) REFERENCES Cliente (rutcliente)
